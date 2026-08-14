@@ -9,7 +9,10 @@ readme = "README.md"
 requires-python = ">=3.14,<4.0"
 dependencies = [
     "fastapi[standard] (>=0.141.1,<0.142.0)",
-    "taskipy (>=1.14.1,<2.0.0)"
+    "taskipy (>=1.14.1,<2.0.0)",
+    "pydantic-settings (>=2.15.0,<3.0.0)",
+    "sqlalchemy (>=2.0.52,<3.0.0)",
+    "alembic (>=1.19.1,<2.0.0)"
 ]
 
 
@@ -39,12 +42,12 @@ quote-style = 'single'
 
 [tool.pytest]
 pythonpath = ['.']
-addopts = ['-p', 'no:warnings', '--cov=fast_zero', '--cov-context=test']
+addopts = ['-p', 'no:warnings', '--cov=fastapi_zero', '--cov-context=test']
 
 
 [tool.taskipy.tasks]
 lint = "ruff check" 
 format = "ruff check --fix && ruff format"
-run = "fastapi dev fast_zero/app.py"
+run = "fastapi dev fastapi_zero/app.py"
 pre_test = "task lint"
 test = "pytest -s -x -vv && coverage html --show-contexts"
